@@ -1,3 +1,36 @@
+
+                // recupération token
+
+const token =  window.sessionStorage.getItem("token");
+console.log(token)
+
+
+        // bouton login / logout
+
+if (token !== null) {
+    document.getElementById('login-button').style.display = 'none'; 
+    document.getElementById('logout-button').style.display = 'inline'; 
+
+    } else {
+        document.getElementById('logout-button').style.display = 'none'; 
+        document.getElementById('login-button').style.display = 'inline'; 
+
+    }
+
+        //suppression du token à la déconnexion
+
+    document.getElementById("logout-button").addEventListener("click", async function(){
+        window.sessionStorage.removeItem("token");
+    })
+
+
+
+
+// ..........................................................
+
+                // générer galerie img + titres
+
+
 let projets = [];
 async function fetchProjets() {
     await fetch("http://localhost:5678/api/works")
@@ -7,7 +40,7 @@ async function fetchProjets() {
   }
 
 
-                // générer galerie img + titres
+
 function generateGallery(projets) {
     for (let i=0; i < projets.length; i++) {
         const item = projets[i];
@@ -33,6 +66,12 @@ function generateGallery(projets) {
 }
 
 window.addEventListener("load", fetchProjets);
+
+
+
+
+
+
 
 
 // ..........................................................
@@ -74,6 +113,15 @@ window.addEventListener("load", fetchProjets);
         document.querySelector(".ficheGalerie").innerHTML = "";
         generateGallery(filterRestau);
         })
+
+
+
+
+
+
+
+
+
 
 // ..........................................................
 

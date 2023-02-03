@@ -1,31 +1,12 @@
-const id = await fetch("http://localhost:5678/api/users/login", {
-  body: '{"email": "sophie.bluel@test.tld", "password": "S0phie"}',
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json"
-  },
-  method: "POST"
-}) 
-.then(response => response.json())
+const token =  window.sessionStorage.getItem("token");
 
-console.log(id)
+document.getElementById('logout-button').style.display = 'none'; 
 
-
-
-
-document.getElementById("login").addEventListener("click", function(event){
+document.getElementById("login").addEventListener("click", async function(event){
   event.preventDefault()
-});
 
-console.log
-
-/*
-
-async function loginForm(e){
-  e.preventDefault()
-  const username = document.getElementById("username").value
-  const password = document.getElementById("password").value
-  remplacer les logs par un lien vers les input value 
+  const usernameInput = document.getElementById("username").value
+  const passwordInput = document.getElementById("password").value
 
   const id = await fetch("http://localhost:5678/api/users/login", {
     body: '{"email": "sophie.bluel@test.tld", "password": "S0phie"}',
@@ -37,16 +18,14 @@ async function loginForm(e){
   }) 
   .then(response => response.json())
 
-    if(response.status == 200) {
-        console.log(username + "is logged in")
-        return
+    if (id.userId === 1) {
+        console.log("is logged in");
+       window.location.href = "/FrontEnd/index.html";
+       const token = id.token;
+       window.sessionStorage.setItem("token", token);
       }
-    console.log("incorrect")
+      else {
     const alert = document.querySelector(".alert");
     alert.style.display = "inline";
-
-}
-
-
-const token = id.token
-localStorage.setItem('token', token) */
+      }
+});
