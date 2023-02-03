@@ -3,12 +3,12 @@ async function fetchProjets() {
     await fetch("http://localhost:5678/api/works")
       .then((res) => res.json())
       .then((data) => (projets = data));
-      generateGallery()
+      generateGallery(projets)
   }
 
 
                 // générer galerie img + titres
-function generateGallery() {
+function generateGallery(projets) {
     for (let i=0; i < projets.length; i++) {
         const item = projets[i];
 
@@ -35,30 +35,6 @@ function generateGallery() {
 window.addEventListener("load", fetchProjets);
 
 
-/* async function fetchProjets () {
-    await fetch("http://localhost:5678/api/works", {
-    method: "GET"
-    })
-    .then(function(response) {
-    response.json()
-    .then(function(json) {
-        projets = json   
-    })
-});
-} */
-
-
-
-
-
-
-// ..........................................................
-
-                // page de connexion
-
-
-
-
 // ..........................................................
 
 
@@ -69,31 +45,35 @@ window.addEventListener("load", fetchProjets);
     const btnAll = document.querySelector(".btnOne");
     btnAll.addEventListener("click", function() {
         document.querySelector(".ficheGalerie").innerHTML = "";
-        generateGallery();
+        generateGallery(projets);
     });
 
                     // filtre "objets"
 
     const btnItems = document.querySelector(".btnTwo");
     btnItems.addEventListener("click", function() {
-        const filterItems = projets.filter(categoryId => categoryId = 1);
-        console.log(filterItems);
-        /*
-        const filterItems = projets.filter(function () {
-            return projets.categoryId = "1"; */
-        // }) 
+        const filterItems = projets.filter(p => p.categoryId == 1);
         document.querySelector(".ficheGalerie").innerHTML = "";
         generateGallery(filterItems);
         })
 
-        // 
-
                     // filtre "appartemments"
 
+    const btnAppart = document.querySelector(".btnThree");
+    btnAppart.addEventListener("click", function() {
+        const filterAppart = projets.filter(p => p.categoryId == 2);
+        document.querySelector(".ficheGalerie").innerHTML = "";
+        generateGallery(filterAppart);
+        })
 
                     // filtre "hôtels et restaurants"
                     
-
+    const btnRestau = document.querySelector(".btnFour");
+    btnRestau.addEventListener("click", function() {
+        const filterRestau = projets.filter(p => p.categoryId == 3);
+        document.querySelector(".ficheGalerie").innerHTML = "";
+        generateGallery(filterRestau);
+        })
 
 // ..........................................................
 

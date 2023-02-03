@@ -27,21 +27,24 @@
 	
     <div class="login">
         <h2 class="logTitle">Log in</h2>
+			<form>
+				<div class="alert">mauvais identifiant/mot de passe</div>
 
-            <div class="logBox">
-                E-mail
-                <input class="logInput" placeholder="">
-            </div>
-           
-            <div class="logBox">
-                Mot de passe
-                <input class="logInput" placeholder="">
-            </div>
+				
+				<div class="logBox">
+					E-mail
+					<input name ="email" class="logInput" id="username" placeholder="">
+				</div>
+			
+				<div class="logBox">
+					Mot de passe
+					<input name="password" class="logInput" id="password" placeholder="">
+				</div>
 
-            <div class="btnConnection">Se connecter</div>
-            <br>
-            <a class="log" href="#">Mot de passe oublié</a>
-
+				<button class="btnConnection" id="login">Se connecter</button>
+				<br>
+				<a class="log" href="#">Mot de passe oublié</a>
+			</form>
 
     </div>
 
