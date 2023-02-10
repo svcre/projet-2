@@ -10,76 +10,148 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="JS/index.js" type="module" defer></script>
+	<script src="https://kit.fontawesome.com/b1fe45eaa0.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
-		<ul>
-			<li><a href="/FrontEnd/index.html">projets</a></li>
-			<li><a href="#">contact</a></li>
-			<li><a href="/FrontEnd/login.html" id="login-button">login</a></li>
-			<li><a href="/FrontEnd/index.html" id="logout-button">déconnexion</a></li>
 
-			<li><a href="#"><img class="imgInsta" src="./assets/icons/instagram.png" alt="Instagram"></a></li>
-		</ul>
-	</nav>
-</header>
-<main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
+	<!-- bande modification -->
 
-		<section id="portfolio">	
+	<div class="bande-edition">
 
-		<h2>Mes Projets</h2>
+		<div class="title-edition">
+			<i class="fa-regular fa-clipboard  margin-fa"></i> Mode édition
+		</div>
 
-		<section class="filters">
-			<button class="btnOne">Tous</button>
-			<button class="btnTwo">Objets</button>
-			<button class="btnThree">Appartements</button>
-			<button class="btnFour">Hôtels & restaurants</button>
+		<div class="btn-edition">
+			publier les changements
+		</div>
+
+	</div>
+
+	<!-- modale -->
+	
+
+
+		<div class="container-modale">
+
+			<div class="modale">
+				<div class="container-close">
+					<button class="close-modal">
+						<i class="fa-solid fa-xmark fa-xl"></i>
+					</button>
+				</div>
+
+				<h3>Galerie photo</h3>
+
+					<div class="grid-modal">
+
+
+					</div>
+
+
+				<button class="btn-modale">Ajouter une photo</button>
+
+				<button class="delete">
+					Supprimer la galerie
+				</button>
+			</div>
+
+			
+		</div>
+
+
+
+
+<div class="overall">
+
+	<header>
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<nav>
+			<ul>
+				<li><a href="/FrontEnd/index.html">projets</a></li>
+				<li><a href="#contact">contact</a></li>
+				<li><a href="/FrontEnd/login.html" id="login-button">login</a></li>
+				<li><a href="/FrontEnd/index.html" id="logout-button">déconnexion</a></li>
+
+				<li><a href="#"><img class="imgInsta" src="./assets/icons/instagram.png" alt="Instagram"></a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section id="introduction">
+			<figure>
+
+				<div class="column">
+
+					<img src="./assets/images/sophie-bluel.png" alt="">
+
+					<button class="modifier"><i class="fa-regular fa-clipboard  margin-fa"></i> modifier</button>
+
+				</div>
+
+				</figure>
+			<article>
+				<button class="modifier"><i class="fa-regular fa-clipboard"></i> modifier</button>
+					<br><br>
+				<h2>Designer d'espace</h2>
+				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+			</article>
 		</section>
 
-		<section class="ficheGalerie">
+			<section id="portfolio">	
 
-		
-<!-- querySelector gallery -->
+				<div class="row">
+
+					<h2>Mes Projets</h2> 
+					
+					<button class="modifier"><i class="fa-regular fa-clipboard margin-fa"></i> modifier</button>
+
+				</div>
 
 
+
+			<section class="filters">
+				<button class="btnOne">Tous</button>
+				<button class="btnTwo">Objets</button>
+				<button class="btnThree">Appartements</button>
+				<button class="btnFour">Hôtels & restaurants</button>
+			</section>
+
+			<section class="ficheGalerie">
+
+			
+	<!-- querySelector gallery -->
+
+
+			</section>
+
+			
 		</section>
+		<section id="contact">
+			<h2 id="#contact">Contact</h2>
+			<p>Vous avez un projet ? Discutons-en !</p>
+			<form action="#" method="post">
+				<label for="name">Nom</label>
+				<input type="text" name="name" id="name">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email">
+				<label for="message">Message</label>
+				<textarea name="message" id="message" cols="30" rows="10"></textarea>
+				<input type="submit" value="Envoyer">
+			</form>
+		</section>
+	</main>
 
-		
-	</section>
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
-</main>
-
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
+	<footer>
+		<nav>
+			<ul>
+				<li>Mentions Légales</li>
+			</ul>
+		</nav>
+	</footer>
+</div>
 </body>
 </html>

@@ -2,18 +2,24 @@
                 // recupération token
 
 const token =  window.sessionStorage.getItem("token");
-console.log(token)
 
 
-        // bouton login / logout
+        // contenu connecté/déconnecté
+
+let hiddenElements = document.querySelectorAll(".modifier");
 
 if (token !== null) {
     document.getElementById('login-button').style.display = 'none'; 
     document.getElementById('logout-button').style.display = 'inline'; 
+    hiddenElements.forEach( hiddenElements => hiddenElements.style.display = "inline");
+    document.querySelector(".bande-edition").style.display = "flex";
 
     } else {
         document.getElementById('logout-button').style.display = 'none'; 
         document.getElementById('login-button').style.display = 'inline'; 
+        hiddenElements.forEach( hiddenElements => hiddenElements.style.display = "none");
+        document.querySelector(".bande-edition").style.display = "none";
+
 
     }
 
@@ -38,8 +44,6 @@ async function fetchProjets() {
       .then((data) => (projets = data));
       generateGallery(projets)
   }
-
-
 
 function generateGallery(projets) {
     for (let i=0; i < projets.length; i++) {
@@ -69,6 +73,41 @@ window.addEventListener("load", fetchProjets);
 
 
 
+// ..........................................................
+
+
+                // boutons modifier
+
+let overallModal = document.querySelector(".container-modale");
+let modal = document.querySelector(".modale");
+
+hiddenElements[2].addEventListener("click", function(e){
+    e.preventDefault
+    overallModal.style.display = "flex";
+    modal.style.display = "flex";
+    // TODO fixer le click qui ferme la modale
+    // overallModal.addEventListener('click', closeModal);
+    modal.querySelector(".close-modal").addEventListener('click', closeModal)
+    adminGallery(projets)
+}) 
+
+const closeModal = function (e) {
+    e.preventDefault
+    overallModal.style.display = "none";
+    modal.style.display = "none";
+   document.querySelectorAll("img").forEach((element) => {
+        if (element.className == "thumbnail") {
+            element.remove()
+        }
+    })
+}
+
+
+/*
+hiddenElements[1] // description
+
+hiddenElements[2] // projets
+*/
 
 
 
@@ -119,11 +158,50 @@ window.addEventListener("load", fetchProjets);
 
 
 
-
-
-
-
 // ..........................................................
 
 
-                // fenêtre modale
+                // fetch suppression de travaux
+
+
+function adminGallery(projets) {
+    for (let i=0; i < projets.length; i++) {
+        const item = projets[i];
+
+        const sectionItem = document.querySelector(".grid-modal");
+        const itemElement = document.createElement("item");
+
+        const imageItem = document.createElement("img");
+        imageItem.className = "thumbnail";
+        imageItem.src = item.imageUrl;
+
+        const edit = document.createElement("p");
+        edit.className = "edit";
+        edit.innerText = "éditer";
+
+        const trashBtn = document.createElement("p");
+        // TODO Remplacer "supprimer" par une icone 
+        trashBtn.className = "container-thumbnail";
+
+        sectionItem.appendChild(itemElement);
+        itemElement.appendChild(imageItem);
+        itemElement.appendChild(edit);
+        itemElement.appendChild(trashBtn)
+    }
+}
+
+
+async function deleteItem(id) {
+    const remove = await fetch("http://localhost:5678/api/works/${id}", {
+  headers: {
+    Accept: "*/*"
+  },
+  method: "DELETE"
+})
+}
+
+async function deleteBtn() {
+    console.log(deleteBtn.target.id)
+    document.querySelector(".container-thumbnail").addEventListener("click", deleteItem)
+
+}
