@@ -96,6 +96,17 @@ const closeModal = function(e) {
         if (element.className == "thumbnail") {
             element.remove()
         }
+
+    })
+    document.querySelectorAll("p").forEach((element) => {
+        if (element.className == "container-thumbnail") {
+            element.remove()
+        }
+    })
+    document.querySelectorAll("p").forEach((element) => {
+        if (element.className == "edit") {
+            element.remove()
+        }
     })
 }
 
@@ -192,9 +203,8 @@ function adminGallery(projets) {
         edit.innerText = "éditer";
 
         const trashBtn = document.createElement("p");
-        // TODO Remplacer "supprimer" par une icone 
         trashBtn.className = "container-thumbnail";
-        trashBtn.innerText = "supprimer";
+        trashBtn.innerHTML = `<i class="fa-solid fa-trash fa-xs"></i>`;
         trashBtn.id = item.id;
         trashBtn.addEventListener('click', (e) => {
             e.preventDefault()
@@ -203,8 +213,10 @@ function adminGallery(projets) {
 
         sectionItem.appendChild(itemElement);
         itemElement.appendChild(imageItem);
+        itemElement.appendChild(trashBtn);
         itemElement.appendChild(edit);
-        itemElement.appendChild(trashBtn)
+
+
     }
 }
 
@@ -215,63 +227,51 @@ function adminGallery(projets) {
 
 // ajout nouveaux travaux
 
-
-let categories = [];
-async function fetchCategories() {
-    await fetch("http://localhost:5678/api/categories")
-        .then((res) => res.json())
-        .then((data) => (categories = data));
-}
-
-
-
-
-/* function generateCategories() {
-    for (let i = 0; i < categories.length; i++) {
-        const category = categories[i];
-        const sectionCat = document.getElementById("new-category");
-        const catElement = document.createElement("category");
-
-        const titleCat = document.createElement("option")
-        titleCat.innerText = `${category.name}`
-    }
-}
-
-generateCategories(categories)
-console.log(categories)
-
-*/
-
-
 document.getElementById("newValider").addEventListener("click", async function(event) {
     event.preventDefault()
 
-    let newImgElement = document.getElementById("new-img").value
+    const newImgElement = document.getElementById('new-img');
+    const imageFile = newImgElement.files[0];
     let newTitleElement = document.getElementById("new-title").value
     let newCatElement = document.getElementById("new-category").value
 
-    if (newImgElement !== null && newTitleElement !== null && newCatElement !== "choisir une catégorie") {
+    if (newImgElement !== null && newImgElement !== "" && newTitleElement !== null && newTitleElement !== "" && newCatElement !== "0") {
 
-        const body = new FormData
-        body.append("image", `${newImgElement}`)
-        body.append("title", `${newTitleElement}`)
-        body.append("category", `${newCatElement}`)
+        const body = new FormData();
+        body.append("image", imageFile)
+        body.append("title", newTitleElement)
+        body.append("category", newCatElement)
 
-        fetch("http://localhost:5678/api/works", {
-            body,
-            headers: {
-                Authorization: `Bearer ${token}`,
-                Accept: "application/json",
-                "Content-Type": "multipart/form-data"
-            },
-            method: "POST"
-        })
+        const request = new XMLHttpRequest();
+        const url = 'http://localhost:5678/api/works';
 
-        // createElement
-
+        request.open('POST', url, true);
+        request.setRequestHeader('Authorization', 'Bearer ' + `${token}`);
+        request.onreadystatechange = function() {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 201) {
+                    console.log(request.responseText);
+                } else {
+                    const alert = document.querySelector(".alert");
+                    alert.style.display = "inline";
+                    console.log(imageFile)
+                }
+            }
+        };
+        request.send(body);
     } else {
-        const alert = document.querySelector(".alert");
+        const alert = document.querySelector(".secondAlert");
         alert.style.display = "inline";
+        console.log(imageFile)
+        if (imageFile == undefined) {
+            alert.innerText = "";
+            alert.innerText = alert.textContent + "fichier incorrect";
+        } else if (newTitleElement == null || newTitleElement == "") {
+            alert.innerText = "";
+            alert.innerText = alert.textContent + "titre incorrect ";
+        } else if (newCatElement == null || newCatElement == 0) {
+            alert.innerText = "";
+            alert.innerText = alert.textContent + "catégorie incorrect ";
+        }
     }
-
 })

@@ -75,11 +75,15 @@
         <form action="" class="newElement">
 
             <div class="container-ajout">
-                <div class="img-ajout">
 
-                    <input type="file" id="new-img" name="file" required />
+                <i class="fa-regular fa-image fa-7x"></i>
+                <br>
 
-                </div>
+                <label for="new-img" class="custom-file-upload">
+                         + Ajouter photo
+                        <input type="file" id="new-img" name="file" required />
+                    </label> jpg, png : 4mo max
+
             </div>
 
             <div class="box-new">
@@ -92,17 +96,18 @@
 
                 <select name="category" id="new-category" class="input-new">
 
-				<option value="">choisir une catégorie</option>
-				<option value="cat1">Objets</option>
-				<option value="cat2">Appartements</option>
-				<option value="cat3">Hôtels & Restaurants</option>
+				<option value="0">choisir une catégorie</option>
+				<option value="1">Objets</option>
+				<option value="2">Appartements</option>
+				<option value="3">Hôtels & Restaurants</option>
 
 			</select>
             </div>
 
         </form>
 
-        <div class="alert">champs invalides</div>
+        <div class="alert">vérifier un des champs</div>
+        <div class="secondAlert"></div>
 
         <button class="btn-modale-valider" id="newValider">Valider</button>
     </div>
