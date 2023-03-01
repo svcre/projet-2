@@ -569,10 +569,17 @@
     }
     
     .thumbnail {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 5px;
         height: 110px;
         width: 83px;
         margin: 3px;
         z-index: 1;
+        background-image: url("");
+        background-size: contain;
+        box-sizing: border-box;
     }
     
     .item {
@@ -608,13 +615,26 @@
         font-size: 12px;
     }
     
-    .container-close {
+    .container-close-first {
         width: 100%;
         display: flex;
+        width: 100%;
         justify-content: flex-end;
     }
     
+    .container-close {
+        width: 100%;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
     .close-modal {
+        border: 0;
+        background: transparent;
+    }
+    
+    .back-modal {
         border: 0;
         background: transparent;
     }
@@ -672,7 +692,7 @@
     }
     
     .btn-modale-valider {
-        background-color: #A7A7A7;
+        background-color: #1D6154;
         color: #fff;
         border: 0;
         border-radius: 60px;
